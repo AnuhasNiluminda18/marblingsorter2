@@ -5,7 +5,7 @@ import cv2
 
 
 @st.cache
-def load_model():
+def load_model(): 
 
     save_dest = Path('model')
     save_dest.mkdir(exist_ok=True)
