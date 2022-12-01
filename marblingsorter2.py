@@ -27,7 +27,7 @@ st.write("""
          )
 
 file = st.file_uploader("Please upload an brain scan file", type=["jpg", "png"])
-#import cv2
+import cv2
 from PIL import Image, ImageOps
 import numpy as np
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -36,12 +36,12 @@ def import_and_predict(image_data, model):
         size = (180,180)    
         image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
         image = np.asarray(image)
-        #img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        #img_resize = (cv2.resize(img, dsize=(75, 75),    interpolation=cv2.INTER_CUBIC))/255.
+        img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        img_resize = (cv2.resize(img, dsize=(75, 75),    interpolation=cv2.INTER_CUBIC))/255.
         
-        ##img_reshape = img_resize[np.newaxis,...]
+        img_reshape = img_resize[np.newaxis,...]
     
-        predictions = model.predict(image)
+        predictions = model.predict(img_reshape)
         
         return predictions
 if file is None:
